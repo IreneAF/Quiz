@@ -13,12 +13,16 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    getQuestions(){
-        return this.http.get('http://localhost:63100/api/questions');
+    getQuestions(quizId){
+        return this.http.get(`http://localhost:63100/api/questions/${quizId}`);
     }
 
     getQuizzes(){
         return this.http.get('http://localhost:63100/api/quizzes');
+    }
+
+    getAllQuizzes(){
+        return this.http.get('http://localhost:63100/api/quizzes/all');
     }
 
     postQuestion(question){

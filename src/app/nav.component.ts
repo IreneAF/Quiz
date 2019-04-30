@@ -6,7 +6,8 @@ import { Component } from '@angular/core'
   selector: 'nav',
   template: `
     <mat-toolbar>
-        <button mat-button routerLink="/quiz">Quiz</button>
+        <button mat-button routerLink="/">Quiz</button>
+        <button mat-button routerLink="/play">Play</button>
         <span style="flex: 1 1 auto;"></span>
         <button *ngIf="!auth.isAuthenticated" mat-button routerLink="/register">Register</button>
         <button *ngIf="!auth.isAuthenticated" mat-button routerLink="/login">Login</button>

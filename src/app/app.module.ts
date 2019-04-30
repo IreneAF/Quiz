@@ -1,3 +1,6 @@
+import { FinishedComponent } from './finished.component';
+import { PlayComponent } from './play.component';
+import { PlayQuizComponent } from './playquiz.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { AuthService } from './auth.service';
 import { RegisterComponent } from './register.component';
@@ -12,10 +15,14 @@ import {
   MatCardModule, 
   MatListModule, 
   MatToolbarModule ,
-  MatSelectModule
+  MatSelectModule,
+  MatExpansionModule,
+  MatRadioModule,
+  MatDialogModule
 
 } from '@angular/material'
 import {MatFormFieldModule} from '@angular/material/form-field'
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 
@@ -27,14 +34,17 @@ import { HomeComponent } from './home.component'
 import { NavComponent } from './nav.component'
 import { QuizComponent } from './quiz.component'
 import { QuizzesComponent } from './quizzes.component'
+ 
 
 const routes = [
   { path: '', component: HomeComponent},
   { path: 'question', component: QuestionComponent},
-  { path: 'question/:quizId', component: QuestionComponent},   
+  { path: 'question/:quizId', component: QuestionComponent},
   { path: 'quiz', component: QuizComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'play', component: PlayComponent},
+  { path: 'playQuiz/:quizId', component: PlayQuizComponent}
 ]
 
 @NgModule({
@@ -47,10 +57,13 @@ const routes = [
     QuizComponent,
     QuizzesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PlayComponent,
+    PlayQuizComponent,
+    FinishedComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
@@ -62,13 +75,17 @@ const routes = [
     MatListModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [ApiService, AuthService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FinishedComponent]
 })
 export class AppModule { }
